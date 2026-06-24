@@ -13,6 +13,7 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from app.explainability import global_feature_importance  # noqa: E402
+from app.batch_validation import BATCH_COLUMNS, format_missing_columns_error, validate_batch_columns  # noqa: E402
 from app.predict import MODEL_DIR, load_artifacts, predict_one  # noqa: E402
 from app.schemas import CustomerInput  # noqa: E402
 from src.monitoring import monitoring_snapshot  # noqa: E402
@@ -91,6 +92,11 @@ def _customer_form() -> CustomerInput:
 
 def _score_batch(uploaded_file) -> pd.DataFrame:
     df = pd.read_csv(uploaded_file)
+    missing, unexpected = validate_batch_columns(df)
+    if missing:
+        raise ValueError(format_missing_columns_error(missing))
+    if unexpected:
+        st.info(f"Ignoring extra columns: {', '.join(unexpected[:12])}")
     results = []
     for idx, row in df.iterrows():
         record = row.to_dict()
@@ -123,15 +129,22 @@ with tab_score:
 
 with tab_batch:
     uploaded = st.file_uploader("Upload customer CSV", type=["csv"])
+    with st.expander("Required CSV columns"):
+        st.write("This app accepts telecom customer churn CSV files only. `customer_id` is optional.")
+        st.code(",".join(BATCH_COLUMNS), language="text")
     if uploaded is not None:
-        batch_results = _score_batch(uploaded)
-        st.dataframe(batch_results, use_container_width=True)
-        st.subheader("Churn Risk Distribution")
-        st.bar_chart(batch_results["risk_band"].value_counts())
-        st.subheader("High-Risk Customers")
-        st.dataframe(batch_results[batch_results["risk_band"] == "High"], use_container_width=True)
-        st.subheader("Most Persuadable Customers")
-        st.dataframe(batch_results.sort_values("persuadability_score", ascending=False).head(20), use_container_width=True)
+        try:
+            batch_results = _score_batch(uploaded)
+        except ValueError as exc:
+            st.error(str(exc))
+        else:
+            st.dataframe(batch_results, use_container_width=True)
+            st.subheader("Churn Risk Distribution")
+            st.bar_chart(batch_results["risk_band"].value_counts())
+            st.subheader("High-Risk Customers")
+            st.dataframe(batch_results[batch_results["risk_band"] == "High"], use_container_width=True)
+            st.subheader("Most Persuadable Customers")
+            st.dataframe(batch_results.sort_values("persuadability_score", ascending=False).head(20), use_container_width=True)
 
 with tab_metrics:
     metrics = _load_metrics()

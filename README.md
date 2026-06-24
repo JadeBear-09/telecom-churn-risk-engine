@@ -29,6 +29,55 @@ The output is not just a model prediction. Each scored customer receives:
 - recommended retention action
 - expected business impact based on a cost matrix
 
+## Batch Upload CSV Contract
+
+The dashboard batch upload accepts telecom customer churn CSV files only. It is not a general-purpose CSV predictor. A weather, sales, rain, stock, or unrelated CSV should be rejected because the model was trained on telecom customer fields and cannot produce meaningful predictions for unrelated data.
+
+The Streamlit dashboard shows the required columns in the Batch tab before scoring. `customer_id` is optional; if it is missing, the app creates an upload ID for each row. All other customer fields are required so users do not accidentally score a file with mostly default values.
+
+Required/accepted columns:
+
+```text
+customer_id
+gender
+senior_citizen
+partner
+dependents
+tenure
+phone_service
+multiple_lines
+internet_service
+online_security
+online_backup
+device_protection
+tech_support
+streaming_tv
+streaming_movies
+contract
+paperless_billing
+payment_method
+monthly_charges
+total_charges
+complaint_count_90d
+support_ticket_count_90d
+network_downtime_minutes_30d
+late_payment_count_6m
+billing_dispute_count_6m
+avg_data_usage_gb_30d
+plan_change_count_12m
+region
+customer_segment
+last_interaction_sentiment
+```
+
+If required columns are missing, the dashboard displays a clear error such as:
+
+```text
+This app accepts only telecom customer churn CSV files. Missing required columns: tenure, monthly_charges
+```
+
+Extra columns are ignored after the app warns the user.
+
 ## Project Snapshot
 
 | Area | Implementation |
