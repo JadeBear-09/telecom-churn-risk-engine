@@ -13,7 +13,12 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from app.explainability import global_feature_importance  # noqa: E402
-from app.batch_validation import BATCH_COLUMNS, format_missing_columns_error, validate_batch_columns  # noqa: E402
+from app.batch_validation import (  # noqa: E402
+    BATCH_COLUMNS,
+    BATCH_REQUIRED_COLUMNS,
+    format_missing_columns_error,
+    validate_batch_columns,
+)
 from app.predict import MODEL_DIR, load_artifacts, predict_one  # noqa: E402
 from app.schemas import CustomerInput  # noqa: E402
 from src.monitoring import monitoring_snapshot  # noqa: E402
@@ -22,11 +27,88 @@ from src.monitoring import monitoring_snapshot  # noqa: E402
 st.set_page_config(page_title="Telecom Churn Risk Engine", layout="wide")
 
 
+BATCH_COLUMN_GROUPS = {
+    "Account": [
+        "customer_id",
+        "tenure",
+        "contract",
+        "payment_method",
+        "paperless_billing",
+    ],
+    "Services": [
+        "phone_service",
+        "multiple_lines",
+        "internet_service",
+        "online_security",
+        "online_backup",
+        "device_protection",
+        "tech_support",
+        "streaming_tv",
+        "streaming_movies",
+    ],
+    "Billing": [
+        "monthly_charges",
+        "total_charges",
+        "late_payment_count_6m",
+        "billing_dispute_count_6m",
+    ],
+    "Support and usage": [
+        "complaint_count_90d",
+        "support_ticket_count_90d",
+        "network_downtime_minutes_30d",
+        "avg_data_usage_gb_30d",
+        "plan_change_count_12m",
+        "last_interaction_sentiment",
+    ],
+    "Profile": [
+        "gender",
+        "senior_citizen",
+        "partner",
+        "dependents",
+        "region",
+        "customer_segment",
+    ],
+}
+
+
 def _load_metrics() -> dict:
     metrics_path = MODEL_DIR / "metrics.json"
     if not metrics_path.exists():
         return {}
     return json.loads(metrics_path.read_text())
+
+
+def _template_csv() -> str:
+    example = CustomerInput().model_dump()
+    columns = ["customer_id", *[col for col in BATCH_COLUMNS if col != "customer_id"]]
+    return pd.DataFrame([example], columns=columns).to_csv(index=False)
+
+
+def _render_batch_requirements() -> None:
+    required_count = len(BATCH_REQUIRED_COLUMNS)
+    optional_count = len(BATCH_COLUMNS) - required_count
+    st.caption(f"{required_count} required columns. {optional_count} optional column: customer_id.")
+
+    group_cols = st.columns(3)
+    for idx, (group, columns) in enumerate(BATCH_COLUMN_GROUPS.items()):
+        with group_cols[idx % len(group_cols)]:
+            st.markdown(f"**{group}**")
+            rows = []
+            for column in columns:
+                rows.append(
+                    {
+                        "Column": column,
+                        "Required": "No" if column == "customer_id" else "Yes",
+                    }
+                )
+            st.dataframe(pd.DataFrame(rows), hide_index=True, use_container_width=True)
+
+    st.download_button(
+        "Download CSV template",
+        data=_template_csv(),
+        file_name="telecom_churn_batch_template.csv",
+        mime="text/csv",
+    )
 
 
 def _customer_form() -> CustomerInput:
@@ -129,9 +211,9 @@ with tab_score:
 
 with tab_batch:
     uploaded = st.file_uploader("Upload customer CSV", type=["csv"])
-    with st.expander("Required CSV columns"):
-        st.write("This app accepts telecom customer churn CSV files only. `customer_id` is optional.")
-        st.code(",".join(BATCH_COLUMNS), language="text")
+    with st.expander("CSV format", expanded=True):
+        st.write("Upload one row per customer. Extra columns are ignored.")
+        _render_batch_requirements()
     if uploaded is not None:
         try:
             batch_results = _score_batch(uploaded)
