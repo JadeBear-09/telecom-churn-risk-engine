@@ -1,0 +1,51 @@
+customer_id,senior_citizen,tenure,monthly_charges,total_charges,complaint_count_90d,support_ticket_count_90d,network_downtime_minutes_30d,late_payment_count_6m,billing_dispute_count_6m,avg_data_usage_gb_30d,plan_change_count_12m,gender,partner,dependents,phone_service,multiple_lines,internet_service,online_security,online_backup,device_protection,tech_support,streaming_tv,streaming_movies,contract,paperless_billing,payment_method,region,customer_segment,last_interaction_sentiment
+4376-KFVRS,0,72,114.05,8468.2,2,2,16.0,1,0,59.2,0,Male,Yes,Yes,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Two year,Yes,Credit card (automatic),West,Premium,positive
+2754-SDJRD,1,8,100.15,908.55,2,3,56.3,1,1,85.3,1,Female,No,No,Yes,Yes,Fiber optic,No,No,No,Yes,Yes,Yes,Month-to-month,Yes,Credit card (automatic),South,Premium,negative
+9917-KWRBE,0,41,78.35,3211.2,1,1,60.6,1,0,47.0,1,Female,Yes,Yes,Yes,Yes,DSL,Yes,Yes,Yes,No,Yes,No,One year,Yes,Credit card (automatic),Northeast,Growth,neutral
+0365-GXEZS,0,18,78.2,1468.75,4,1,75.0,1,0,103.5,0,Male,Yes,No,Yes,No,Fiber optic,No,No,Yes,Yes,No,No,Month-to-month,No,Electronic check,Northeast,Growth,positive
+9385-NXKDA,0,72,82.65,5919.35,1,1,61.1,2,1,44.4,0,Female,Yes,No,Yes,Yes,DSL,Yes,Yes,Yes,No,Yes,Yes,Two year,Yes,Credit card (automatic),West,Growth,positive
+4686-UXDML,0,21,99.85,1992.55,0,4,45.6,3,1,72.9,1,Female,No,No,Yes,Yes,Fiber optic,No,Yes,No,No,Yes,Yes,Month-to-month,Yes,Credit card (automatic),Northeast,Premium,positive
+2227-JRSJX,0,21,99.15,1956.4,1,2,45.7,0,1,59.9,2,Female,No,No,Yes,No,Fiber optic,No,Yes,No,Yes,Yes,Yes,Month-to-month,Yes,Bank transfer (automatic),Northeast,Premium,neutral
+4830-FAXFM,0,19,24.1,439.2,4,2,46.3,1,0,59.0,0,Male,No,Yes,Yes,Yes,No,No internet service,No internet service,No internet service,No internet service,No internet service,No internet service,Month-to-month,Yes,Credit card (automatic),South,Value,positive
+1830-IPXVJ,0,61,19.75,1311.6,1,1,38.4,0,0,24.2,1,Female,Yes,Yes,Yes,No,No,No internet service,No internet service,No internet service,No internet service,No internet service,No internet service,Two year,No,Credit card (automatic),Northeast,Value,neutral
+4690-LLKUA,1,17,45.05,770.6,2,1,15.4,3,1,26.5,2,Male,No,No,Yes,No,DSL,No,No,No,No,No,No,Month-to-month,Yes,Electronic check,Northeast,Growth,neutral
+5804-HYIEZ,0,70,106.05,7554.05,4,2,39.5,1,0,72.7,0,Male,Yes,Yes,Yes,Yes,Fiber optic,Yes,Yes,No,No,Yes,Yes,Month-to-month,Yes,Electronic check,South,Premium,neutral
+2388-LAESQ,1,72,114.85,8317.95,1,1,65.1,1,0,52.1,0,Female,Yes,No,Yes,Yes,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Two year,Yes,Bank transfer (automatic),Northeast,Premium,positive
+5533-RJFTJ,0,49,30.2,1453.1,0,1,82.2,1,0,63.4,1,Male,No,No,No,No phone service,DSL,No,No,Yes,No,No,No,Month-to-month,Yes,Bank transfer (automatic),Midwest,Value,positive
+4706-AXVKM,1,11,84.8,906.85,4,1,152.7,1,1,56.2,2,Female,No,No,Yes,Yes,Fiber optic,No,No,No,No,No,Yes,Month-to-month,Yes,Credit card (automatic),Northeast,Growth,positive
+0997-YTLNY,0,19,48.8,953.65,1,3,35.3,0,0,55.7,0,Female,No,Yes,Yes,No,DSL,No,No,No,Yes,No,No,Month-to-month,No,Mailed check,Midwest,Growth,positive
+7971-HLVXI,0,72,84.5,6130.85,1,2,26.3,0,0,87.2,1,Male,Yes,Yes,Yes,Yes,Fiber optic,No,No,No,No,No,Yes,Two year,Yes,Credit card (automatic),Northeast,Growth,positive
+7337-CINUD,0,8,19.5,159.35,1,2,8.1,0,1,25.3,2,Female,Yes,Yes,Yes,No,No,No internet service,No internet service,No internet service,No internet service,No internet service,No internet service,Two year,No,Bank transfer (automatic),Midwest,Growth,positive
+1379-FRVEB,0,15,91.0,1430.05,4,2,65.4,1,1,85.6,0,Male,No,Yes,Yes,Yes,Fiber optic,No,Yes,No,No,Yes,No,Month-to-month,Yes,Electronic check,Midwest,Premium,negative
+4753-PADAS,0,67,105.7,6816.95,3,0,97.1,0,1,79.7,1,Female,Yes,No,Yes,Yes,Fiber optic,No,Yes,Yes,No,Yes,Yes,One year,Yes,Bank transfer (automatic),Northeast,Premium,positive
+5701-GUXDC,0,26,35.4,978.6,0,4,25.8,1,1,39.0,1,Female,Yes,No,No,No phone service,DSL,Yes,No,Yes,No,No,No,One year,No,Credit card (automatic),West,Value,negative
+7235-NXZCP,1,2,74.85,156.4,0,3,36.4,0,1,72.0,2,Male,No,No,Yes,Yes,Fiber optic,No,No,No,No,No,No,Month-to-month,Yes,Mailed check,South,Growth,positive
+0668-OGMHD,0,21,28.5,629.35,2,2,21.5,0,1,46.0,1,Female,Yes,No,No,No phone service,DSL,Yes,No,No,No,No,No,Month-to-month,No,Electronic check,Northeast,Value,positive
+2812-REYAT,0,49,20.05,923.1,1,1,19.8,2,0,48.7,1,Female,Yes,No,Yes,No,No,No internet service,No internet service,No internet service,No internet service,No internet service,No internet service,One year,Yes,Bank transfer (automatic),Northeast,Value,positive
+8779-YIQQA,0,21,19.8,350.1,0,0,15.0,0,0,33.0,1,Male,Yes,Yes,Yes,No,No,No internet service,No internet service,No internet service,No internet service,No internet service,No internet service,One year,No,Mailed check,West,Value,positive
+9701-CDXHR,0,51,69.15,3649.6,1,0,20.7,1,0,67.1,2,Female,Yes,No,Yes,No,Fiber optic,No,No,No,No,No,No,Month-to-month,No,Mailed check,South,Growth,neutral
+7130-CTCUS,1,16,54.55,825.1,3,0,77.2,3,2,30.8,0,Male,Yes,No,Yes,No,DSL,Yes,Yes,No,No,No,No,Month-to-month,Yes,Bank transfer (automatic),West,Growth,neutral
+1894-IGFSG,0,22,89.25,1907.85,2,2,58.3,0,1,103.5,2,Female,No,No,Yes,No,Fiber optic,No,No,No,No,Yes,Yes,Month-to-month,No,Electronic check,West,Premium,neutral
+0871-URUWO,0,13,102.25,1359.0,2,2,48.5,0,0,91.5,3,Male,Yes,No,Yes,Yes,Fiber optic,No,No,Yes,No,Yes,Yes,Month-to-month,Yes,Credit card (automatic),South,Premium,neutral
+0057-QBUQH,0,43,25.1,1070.15,2,3,46.5,1,0,37.5,1,Female,No,Yes,Yes,Yes,No,No internet service,No internet service,No internet service,No internet service,No internet service,No internet service,Two year,Yes,Electronic check,West,Value,negative
+9611-CTWIH,0,3,89.45,240.45,4,2,57.1,1,1,67.3,2,Female,No,No,Yes,No,Fiber optic,No,No,No,No,Yes,Yes,Month-to-month,Yes,Electronic check,South,Premium,negative
+8058-DMYRU,1,54,90.05,4931.8,1,2,31.8,1,1,68.3,0,Male,No,No,Yes,Yes,Fiber optic,No,Yes,No,No,No,Yes,Month-to-month,Yes,Electronic check,South,Premium,negative
+5351-QESIO,0,1,24.2,24.2,4,4,61.8,2,0,33.8,4,Male,No,Yes,No,No phone service,DSL,No,No,No,No,No,No,Month-to-month,No,Mailed check,Midwest,Growth,negative
+4302-ZYFEL,0,69,20.55,1403.1,1,0,17.4,0,0,43.0,1,Male,Yes,Yes,Yes,No,No,No internet service,No internet service,No internet service,No internet service,No internet service,No internet service,One year,Yes,Credit card (automatic),Midwest,Value,positive
+6134-KWTBV,0,62,23.4,1429.65,0,2,25.5,0,0,36.6,1,Male,No,No,Yes,Yes,No,No internet service,No internet service,No internet service,No internet service,No internet service,No internet service,Two year,No,Bank transfer (automatic),Midwest,Value,positive
+2034-GDRCN,0,2,90.4,168.2,2,6,103.5,4,0,69.0,2,Female,No,No,Yes,No,Fiber optic,No,No,No,No,Yes,Yes,Month-to-month,Yes,Electronic check,Northeast,Premium,negative
+9544-PYPSJ,1,62,96.1,6019.35,3,2,62.7,2,0,96.0,0,Female,Yes,Yes,Yes,Yes,Fiber optic,No,Yes,Yes,No,No,Yes,Month-to-month,Yes,Credit card (automatic),West,Premium,positive
+4208-UFFGW,1,2,44.95,85.15,1,1,90.1,1,0,43.5,1,Male,No,No,Yes,No,DSL,No,No,No,No,No,No,Month-to-month,No,Mailed check,South,Growth,negative
+9537-JALFH,0,69,19.9,1356.7,1,0,12.8,0,0,40.8,0,Male,Yes,Yes,Yes,No,No,No internet service,No internet service,No internet service,No internet service,No internet service,No internet service,Two year,No,Bank transfer (automatic),Midwest,Value,neutral
+4415-IJZTP,0,1,74.5,74.5,5,1,73.1,2,0,61.1,1,Female,No,No,Yes,Yes,Fiber optic,No,No,No,No,No,No,Month-to-month,Yes,Electronic check,Midwest,Growth,positive
+4701-MLJPN,0,31,55.25,1715.65,0,2,44.3,1,0,30.9,1,Male,No,No,Yes,No,DSL,No,No,Yes,Yes,No,No,Month-to-month,Yes,Electronic check,Northeast,Growth,positive
+7515-LODFU,1,69,20.3,1356.3,0,1,45.4,1,0,39.0,0,Male,No,No,Yes,No,No,No internet service,No internet service,No internet service,No internet service,No internet service,No internet service,Two year,No,Credit card (automatic),West,Value,neutral
+4927-WWOOZ,0,2,91.45,171.45,2,4,64.5,0,0,79.4,2,Male,Yes,No,Yes,Yes,Fiber optic,No,No,Yes,No,Yes,No,Month-to-month,Yes,Electronic check,West,Premium,negative
+4067-HLYQI,0,33,70.4,2406.1,0,2,142.6,3,0,72.5,1,Female,No,No,Yes,No,Fiber optic,No,No,No,No,No,No,Month-to-month,Yes,Bank transfer (automatic),Northeast,Growth,positive
+6184-DYUOB,0,3,19.6,55.25,2,3,54.5,0,0,60.5,0,Female,Yes,No,Yes,No,No,No internet service,No internet service,No internet service,No internet service,No internet service,No internet service,Month-to-month,Yes,Mailed check,South,Growth,positive
+9209-NWPGU,0,44,65.4,2774.55,0,1,10.9,1,1,38.1,0,Male,No,No,Yes,No,DSL,Yes,No,No,Yes,Yes,No,One year,No,Electronic check,South,Growth,positive
+9851-KIELU,0,10,110.1,1043.3,1,3,121.8,2,0,67.4,1,Male,No,No,Yes,No,Fiber optic,Yes,Yes,Yes,Yes,Yes,Yes,Month-to-month,Yes,Electronic check,South,Premium,positive
+3199-XGZCY,0,8,75.25,576.7,3,2,46.9,2,2,98.2,1,Female,No,No,Yes,Yes,Fiber optic,No,No,No,No,No,No,Month-to-month,Yes,Electronic check,West,Growth,neutral
+4226-KKDON,0,8,66.65,520.95,3,5,51.5,1,0,50.5,0,Male,No,No,Yes,No,DSL,No,Yes,No,Yes,Yes,No,Month-to-month,Yes,Electronic check,Midwest,Growth,neutral
+1085-LDWAM,0,69,20.35,1442.65,2,0,26.1,0,0,45.9,0,Female,Yes,Yes,Yes,No,No,No internet service,No internet service,No internet service,No internet service,No internet service,No internet service,One year,Yes,Credit card (automatic),Northeast,Value,positive
+6825-UYPFK,0,23,75.6,1758.6,2,6,63.5,1,1,89.4,1,Female,No,No,Yes,Yes,Fiber optic,No,No,No,No,No,No,Month-to-month,No,Bank transfer (automatic),Midwest,Growth,positive
