@@ -4,6 +4,13 @@ __pycache__/
 .venv/
 venv/
 .git/
+.env
+.env.*
+*.pem
+*.key
+*.crt
+*.p12
+secrets/
 data/raw/*.csv
 data/processed/*.csv
 models/*.pkl
@@ -11,3 +18,7 @@ models/explainer_background.pkl
 models/evaluation_latest.json
 models/experiment_runs/*.json
 models/model_registry.json
+reports/human_thoughts.md
+reports/*scratch*.md
+reports/*draft*.md
+troubleshooting.md
