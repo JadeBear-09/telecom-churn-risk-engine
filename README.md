@@ -11,104 +11,116 @@ license: mit
 
 # Telecom Churn Risk Engine
 
-End-to-end traditional ML project for telecom churn risk scoring.
+<p align="center">
+  <a href="https://github.com/JadeBear-09/telecom-churn-risk-engine/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/JadeBear-09/telecom-churn-risk-engine?style=social"></a>
+  <a href="https://github.com/JadeBear-09/telecom-churn-risk-engine/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/JadeBear-09/telecom-churn-risk-engine/actions/workflows/ci.yml/badge.svg"></a>
+  <img alt="Last commit" src="https://img.shields.io/github/last-commit/JadeBear-09/telecom-churn-risk-engine">
+  <img alt="Issues" src="https://img.shields.io/github/issues/JadeBear-09/telecom-churn-risk-engine">
+  <img alt="Python" src="https://img.shields.io/badge/python-3.11+-3776AB?logo=python&logoColor=white">
+  <img alt="FastAPI" src="https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white">
+  <img alt="Streamlit" src="https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=white">
+  <img alt="Docker" src="https://img.shields.io/badge/Docker-ready-2496ED?logo=docker&logoColor=white">
+</p>
 
-The system predicts which customers are likely to churn, explains why they are risky, maps model scores into retention decisions, and exposes the workflow through FastAPI, Streamlit, Docker, tests, and monitoring checks.
+<p align="center">
+  <a href="https://jade09-telecom-churn-risk-engine.hf.space">Live demo</a>
+  · <a href="#quick-start">Quick start</a>
+  · <a href="#api-contract">API</a>
+  · <a href="#model-snapshot">Model snapshot</a>
+  · <a href="docs/COMMIT_GUIDE.md">Commit guide</a>
+</p>
 
-The implementation covers training, serving, dashboarding, tests, containerization, and monitoring checks.
+End-to-end telecom churn workflow that turns customer records into risk bands,
+plain-language drivers, and retention actions. The repo is built to be readable in
+interviews: training code, serving API, dashboard, tests, model card, monitoring notes,
+and CI all live in one place.
 
-## Capabilities
+## Why This Exists
 
-- Reproducible scikit-learn training pipeline
-- Customer churn classification on IBM Telco-style data
-- Feature engineering for billing, support, network, usage, and sentiment signals
-- Baseline and tree-based classical ML model comparison
-- Probability calibration and cost-based threshold tuning
-- Business-readable prediction explanations
-- Retention action recommendations
-- FastAPI prediction service
-- Streamlit dashboard for single and batch scoring
-- Docker deployment path for Hugging Face Spaces
-- Pytest coverage and GitHub Actions CI
-- Monitoring logic for drift, missing values, latency, and model health
-
-## Business Goal
-
-Telecom teams cannot contact every customer. This project turns churn prediction into a ranked retention workflow:
+Telecom teams cannot contact every customer. This project ranks customers by churn
+risk, explains why each customer is risky, and recommends the next retention action.
 
 ```text
-customer data -> churn probability -> risk band -> reasons -> recommended action
+customer data -> churn probability -> risk band -> top reasons -> retention action
 ```
 
 Each scored customer receives:
 
-- churn probability
+- churn probability and tuned decision threshold
 - `Low`, `Medium`, or `High` risk band
-- top risk reasons in plain language
+- top business-readable risk reasons
 - recommended retention action
 - estimated business impact
+- uplift tier and persuadability score for outreach prioritization
 
-## End-to-End Flow
+## What Ships
+
+| Area | Implementation |
+| --- | --- |
+| Training | Reproducible scikit-learn pipeline with feature engineering and threshold tuning |
+| Serving | FastAPI service with single, batch, health, metric, and customer-risk endpoints |
+| Review UI | Streamlit dashboard for single scoring, batch uploads, metrics, and monitoring |
+| Business layer | Cost-aware thresholding, risk bands, retention recommendations, model card |
+| Reliability | Pytest suite, GitHub Actions CI, Docker build, monitoring checks |
+| Artifacts | Model metrics snapshot, sample payloads, notebook stubs, reports |
+
+## Architecture
 
 ```text
 IBM Telco CSV or synthetic fallback
         |
         v
-Data cleaning and feature engineering
+data cleaning + telecom feature engineering
         |
         v
-scikit-learn preprocessing pipeline
+scikit-learn preprocessing and model comparison
         |
         v
-Model comparison and threshold tuning
+calibration + cost-aware threshold tuning
         |
         v
-Saved model, preprocessor, metrics
+saved model artifacts + metrics
         |
-        +---------------------+
-        |                     |
-        v                     v
-FastAPI scoring service   Streamlit dashboard
+        +--------------------------+
+        |                          |
+        v                          v
+FastAPI scoring service       Streamlit review dashboard
 ```
 
-## Current Demo Snapshot
+## Model Snapshot
 
-| Area | Implementation |
-| --- | --- |
-| ML type | Traditional supervised classification |
-| Main library | scikit-learn |
-| Dataset | Public IBM Telco Customer Churn dataset with synthetic operational features |
+| Metric | Value |
+| --- | ---: |
+| Dataset | IBM Telco Customer Churn, `7,043` rows |
 | Selected model | Logistic Regression |
 | ROC-AUC | `0.841` |
 | Recall | `0.922` |
-| Decision threshold | `0.13`, selected by business cost |
-| Serving | FastAPI |
-| Dashboard | Streamlit |
-| Deployment | Docker / Hugging Face Spaces-ready |
+| Precision | `0.425` |
+| Tuned global threshold | `0.13` |
+| Threshold policy | False negatives cost `10x` false positives |
 
-The low threshold is intentional: missing likely churners is treated as more expensive than contacting some customers who may not churn.
+The low threshold is intentional: in this business framing, missing likely churners is
+more expensive than contacting some customers who would have stayed anyway.
 
-## Delivery Components
-
-The project includes the core pieces needed to train, serve, inspect, and monitor churn predictions:
-
-- reusable `src/` training and evaluation modules
-- saved model artifacts generated by `make train`
-- API schemas and prediction contract
-- dashboard for business review
-- batch scoring for retention queues
-- model card and monitoring plan
-- tests for features, prediction behavior, API behavior, and batch validation
-- Docker image that trains artifacts during build
-- CI workflow that trains and tests the project
-
-## Run Locally
+## Quick Start
 
 ```bash
+python -m venv .venv
+source .venv/bin/activate
 make install
 make train
 make test
+```
+
+Run the API:
+
+```bash
 make api
+```
+
+Run the dashboard:
+
+```bash
 make dashboard
 ```
 
@@ -126,15 +138,15 @@ docker build -t telecom-churn-risk-engine .
 docker run -p 7860:7860 telecom-churn-risk-engine
 ```
 
-## API Surface
+## API Contract
 
-```text
-GET  /health
-POST /predict
-POST /batch_predict
-GET  /model/metrics
-GET  /customer/{customer_id}/risk
-```
+| Method | Path | Purpose |
+| --- | --- | --- |
+| `GET` | `/health` | Service health |
+| `POST` | `/predict` | Score one customer |
+| `POST` | `/batch_predict` | Score a batch of telecom customers |
+| `GET` | `/model/metrics` | Return model metric snapshot |
+| `GET` | `/customer/{customer_id}/risk` | Return stored/sample customer risk |
 
 Prediction responses include:
 
@@ -165,7 +177,19 @@ The Streamlit dashboard supports:
 - segment thresholds
 - monitoring snapshot
 
-Batch upload is intentionally strict. Non-telecom CSV files are rejected instead of being scored with meaningless defaults.
+Batch upload is intentionally strict. Non-telecom CSV files are rejected instead of
+being scored with meaningless defaults.
+
+## Quality Gates
+
+```bash
+make test
+python -m src.evaluate
+python -m src.batch_scoring
+```
+
+CI trains model artifacts and runs the pytest suite on every push and pull request.
+A scheduled workflow can generate the daily retention queue artifact.
 
 ## Project Map
 
@@ -176,8 +200,8 @@ dashboard/    Streamlit app
 tests/        pytest suite
 reports/      model card, business case, monitoring plan
 notebooks/    lightweight EDA/training notebook stubs
-data/         sample inputs and gitkept raw/processed folders
-models/       gitkept model folder plus generated metrics snapshot
+data/         sample inputs and generated processed outputs
+models/       generated model artifacts and metrics snapshot
 ```
 
 ## Deeper Review
@@ -185,12 +209,25 @@ models/       gitkept model folder plus generated metrics snapshot
 - [Model card](reports/model_card.md)
 - [Business case](reports/business_case.md)
 - [Monitoring plan](reports/monitoring_plan.md)
+- [Commit guide](docs/COMMIT_GUIDE.md)
+- [Contributing guide](CONTRIBUTING.md)
+
+## Roadmap
+
+- Add real outreach experiment data for uplift validation
+- Add model registry integration and artifact versioning
+- Add production data contracts and drift dashboards
+- Add richer SHAP-based explanations behind an optional dependency
+- Add A/B testing hooks for retention campaign measurement
 
 ## Scope And Limits
 
 - This is a classical ML project, not deep learning.
 - Public IBM Telco data is used for the demo.
-- Operational fields such as support tickets, complaints, outages, and sentiment are simulated unless real source CSVs are supplied.
+- Operational fields such as support tickets, complaints, outages, and sentiment are
+  simulated unless real source CSVs are supplied.
 - Recommendations are rule-based and need domain validation before production use.
-- Uplift modeling uses a synthetic treatment/control baseline until real outreach experiment data exists.
-- Real deployment would need production data contracts, access control, observability, model registry, and A/B testing.
+- Uplift modeling uses a synthetic treatment/control baseline until real outreach
+  experiment data exists.
+- Real deployment would need production data contracts, access control, observability,
+  model registry, and A/B testing.
