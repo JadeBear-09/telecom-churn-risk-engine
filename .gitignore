@@ -23,4 +23,9 @@ data/processed/*.csv
 reports/human_thoughts.md
 reports/*scratch*.md
 reports/*draft*.md
+reports/*[Ii]nterview*.md
+reports/*[Rr]esume*.md
+reports/*[Ss]tudy*.md
+reports/*[Ll]earning*.md
+reports/concept_guide.md
 troubleshooting.md

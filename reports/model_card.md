@@ -13,7 +13,7 @@ Primary users:
 - ML engineers evaluating the training and serving workflow
 - data analysts reviewing churn drivers
 - customer success or retention teams using risk bands
-- interviewers reviewing an end-to-end ML project
+- technical reviewers evaluating the end-to-end workflow
 
 Secondary users:
 
@@ -85,7 +85,7 @@ The project supports the public IBM Telco Customer Churn dataset. The loader now
 
 Important note:
 
-The fallback dataset is useful for demonstrating engineering structure and interview concepts. It should not be treated as real production evidence. A production system should train on actual CRM, billing, support, network, and cancellation data.
+The fallback dataset is useful for exercising the engineering structure and demo behavior. It should not be treated as real production evidence. A production system should train on actual CRM, billing, support, network, and cancellation data.
 
 ## Model Candidates
 

@@ -15,9 +15,9 @@ End-to-end traditional ML project for telecom churn risk scoring.
 
 The system predicts which customers are likely to churn, explains why they are risky, maps model scores into retention decisions, and exposes the workflow through FastAPI, Streamlit, Docker, tests, and monitoring checks.
 
-This is built to show practical ML engineering, not just model training in a notebook.
+The implementation covers training, serving, dashboarding, tests, containerization, and monitoring checks.
 
-## What This Project Shows
+## Capabilities
 
 - Reproducible scikit-learn training pipeline
 - Customer churn classification on IBM Telco-style data
@@ -174,7 +174,7 @@ app/          FastAPI app, schemas, prediction, explanations, recommendations
 src/          data ingestion, cleaning, features, training, evaluation, monitoring
 dashboard/    Streamlit app
 tests/        pytest suite
-reports/      model card, business case, monitoring plan, concept guide
+reports/      model card, business case, monitoring plan
 notebooks/    lightweight EDA/training notebook stubs
 data/         sample inputs and gitkept raw/processed folders
 models/       gitkept model folder plus generated metrics snapshot
@@ -185,8 +185,6 @@ models/       gitkept model folder plus generated metrics snapshot
 - [Model card](reports/model_card.md)
 - [Business case](reports/business_case.md)
 - [Monitoring plan](reports/monitoring_plan.md)
-- [Concept guide](reports/concept_guide.md)
-- [Interview notes](reports/interview_notes.md)
 
 ## Scope And Limits
 
@@ -196,7 +194,3 @@ models/       gitkept model folder plus generated metrics snapshot
 - Recommendations are rule-based and need domain validation before production use.
 - Uplift modeling uses a synthetic treatment/control baseline until real outreach experiment data exists.
 - Real deployment would need production data contracts, access control, observability, model registry, and A/B testing.
-
-## One-Line Interview Summary
-
-I built a traditional ML churn system as a decision workflow: train the model, tune the business threshold, explain each prediction, recommend a retention action, serve it through an API, and monitor it after deployment.
